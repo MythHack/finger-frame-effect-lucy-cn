@@ -29,37 +29,49 @@ const toolbar = document.getElementById("toolbar");
 const livePill = document.getElementById("live-pill");
 const liveText = document.getElementById("live-text");
 
-// Each effect is a live style prompt for Lucy 2.5.
+// Each effect is a live style prompt for Lucy 2.5, phrased per Decart's
+// prompt templates ("Change the style of the video to <description>." with
+// concrete visual specifics — vague or non-template phrasing degrades output).
 const EFFECTS = [
   {
     id: "movie3d",
     label: "3D Movie",
     prompt:
-      "Transform the person into a 3D animated movie character with " +
-      "expressive big eyes and soft lighting, keeping pose and framing.",
+      "Change the style of the video to a 3D animated movie: stylized CGI " +
+      "animation, the person as an animated character with expressive big " +
+      "eyes and smooth skin, soft cinematic lighting.",
   },
   {
     id: "anime",
     label: "Anime",
     prompt:
-      "Restyle everything as hand-drawn anime with clean line art and cel shading.",
+      "Change the style of the video to hand-drawn anime: clean black line " +
+      "art, flat cel shading, vibrant colors, large expressive eyes.",
   },
   {
     id: "cyberpunk",
     label: "Cyberpunk",
     prompt:
-      "Restyle the scene as neon cyberpunk: glowing signs, rain-slick " +
-      "surfaces, holographic light on the person.",
+      "Change the style of the video to neon cyberpunk: glowing pink and " +
+      "cyan neon light on the person and walls, rain-slick reflective " +
+      "surfaces, holographic signs in the background.",
   },
   {
     id: "watercolor",
     label: "Watercolor",
-    prompt: "Repaint the scene as a soft watercolor painting with loose brushwork.",
+    prompt:
+      "Change the style of the video to a watercolor painting: soft loose " +
+      "brushstrokes, gentle color bleeds, visible paper texture, muted " +
+      "pastel palette.",
   },
   {
     id: "lego",
     label: "LEGO",
-    prompt: "Rebuild the entire scene and person out of LEGO bricks.",
+    prompt:
+      "Change the style of the video to a LEGO stop-motion animation: the " +
+      "person is a yellow LEGO minifigure with a cylindrical head, painted " +
+      "face, and claw hands, and the room is built entirely from glossy " +
+      "plastic LEGO bricks with visible round studs on every surface.",
   },
   { id: "custom", label: "Custom ✨", prompt: null },
 ];
