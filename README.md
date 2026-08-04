@@ -17,6 +17,11 @@ of milliseconds of model latency.
 | [finger-frame-effect-ai](https://sophiamyang.github.io/finger-frame-effect-ai/) ([repo](https://github.com/sophiamyang/finger-frame-effect-ai)) — recorded video, AI restyle | Gemini Omni Flash (offline video edit) | minutes |
 | **this app** — live camera, live AI | Decart Lucy 2.5 (realtime video-to-video) | ~real time |
 
+![Example: live AI world inside the finger frame](examples/lucy.gif)
+
+*Live capture — the AI world inside the frame moves in real time with the
+camera ([full-quality mp4](examples/lucy.mp4)).*
+
 ## How it works
 
 - The webcam feed (1280×720@30) is mirrored to a full-screen canvas, and
