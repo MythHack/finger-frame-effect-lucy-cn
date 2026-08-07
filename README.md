@@ -16,6 +16,7 @@ of milliseconds of model latency.
 | [finger-frame-effect](https://sophiamyang.github.io/finger-frame-effect/) ([repo](https://github.com/sophiamyang/finger-frame-effect)) — live camera, local effects | Canvas 2D (Van Gogh, toon, glitch, …) | none |
 | [finger-frame-effect-ai](https://sophiamyang.github.io/finger-frame-effect-ai/) ([repo](https://github.com/sophiamyang/finger-frame-effect-ai)) — recorded video, AI restyle | Gemini Omni Flash (offline video edit) | minutes |
 | **this app** — live camera, live AI | Decart Lucy 2.5 (realtime video-to-video) | ~real time |
+| [finger-pet](https://sophiamyang.github.io/finger-pet/) ([repo](https://github.com/sophiamyang/finger-pet)) — hand-tracked virtual pet cat | AI-generated sprites + game logic | none |
 
 ![Example: live AI world inside the finger frame](examples/lucy.gif)
 
