@@ -129,6 +129,8 @@
       right: 16px;
       width: 330px;
       max-width: calc(100vw - 32px);
+      max-height: calc(100vh - 84px);
+      overflow-y: auto;
       z-index: 8;
       background: rgba(24,24,30,0.95);
       backdrop-filter: blur(16px);
@@ -142,7 +144,30 @@
       transform: translateY(-8px);
       pointer-events: none;
     }
+    #key-panel .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
     #key-panel h3 { font-size: 15px; margin-bottom: 8px; }
+    #key-panel .panel-head h3 { margin-bottom: 0; }
+    #key-collapse {
+      flex: none;
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.82);
+      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      font-family: inherit;
+    }
+    #key-collapse:hover { background: rgba(255,255,255,0.12); }
     #key-panel p { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 10px; }
     #key-panel a { color: #8ab4ff; }
     #key-panel input[type="password"], #key-panel textarea {
@@ -246,9 +271,13 @@
 
   <div id="toolbar"></div>
 
-  <button id="key-btn" title="Decart API 密钥">🔑</button>
+  <button id="key-btn" title="打开 Decart 设置" aria-label="打开 Decart 设置">🔑</button>
   <div id="key-panel" class="hidden">
-    <h3>Decart API 密钥</h3>
+    <div class="panel-head">
+      <h3>Decart API 密钥</h3>
+      <button id="key-collapse" type="button" title="收起设置面板" aria-label="收起设置面板"
+        onclick="document.getElementById('key-panel').classList.add('hidden')">⌃</button>
+    </div>
     <p>
       取景框内会显示由 <a href="https://docs.platform.decart.ai/models/realtime/lucy-2.5" target="_blank" rel="noopener">Decart Lucy 2.5</a>
       实时生成的<strong>实时 AI 世界</strong>（通过 WebRTC 进行 30fps 视频到视频转换）。
