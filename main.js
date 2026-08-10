@@ -35,7 +35,7 @@ const liveText = document.getElementById("live-text");
 const EFFECTS = [
   {
     id: "movie3d",
-    label: "3D Movie",
+    label: "3D 动画",
     prompt:
       "Change the style of the video to a 3D animated movie: stylized CGI " +
       "animation, the person as an animated character with expressive big " +
@@ -43,14 +43,14 @@ const EFFECTS = [
   },
   {
     id: "anime",
-    label: "Anime",
+    label: "动漫",
     prompt:
       "Change the style of the video to hand-drawn anime: clean black line " +
       "art, flat cel shading, vibrant colors, large expressive eyes.",
   },
   {
     id: "cyberpunk",
-    label: "Cyberpunk",
+    label: "赛博朋克",
     prompt:
       "Change the style of the video to neon cyberpunk: glowing pink and " +
       "cyan neon light on the person and walls, rain-slick reflective " +
@@ -58,7 +58,7 @@ const EFFECTS = [
   },
   {
     id: "watercolor",
-    label: "Watercolor",
+    label: "水彩",
     prompt:
       "Change the style of the video to a watercolor painting: soft loose " +
       "brushstrokes, gentle color bleeds, visible paper texture, muted " +
@@ -66,14 +66,14 @@ const EFFECTS = [
   },
   {
     id: "lego",
-    label: "LEGO",
+    label: "乐高",
     prompt:
       "Change the style of the video to a LEGO stop-motion animation: the " +
       "person is a yellow LEGO minifigure with a cylindrical head, painted " +
       "face, and claw hands, and the room is built entirely from glossy " +
       "plastic LEGO bricks with visible round studs on every surface.",
   },
-  { id: "custom", label: "Custom ✨", prompt: null },
+  { id: "custom", label: "自定义 ✨", prompt: null },
 ];
 let effect = "movie3d";
 
@@ -164,7 +164,7 @@ function setPill(state, text) {
 async function connectLucy() {
   if (!apiKey || !cameraStream || DEMO) return;
   try {
-    setPill("connecting", "CONNECTING…");
+    setPill("connecting", "连接中…");
     const { createDecartClient, models } = await import(DECART_SDK_URL);
     const model = models.realtime("lucy-2.5");
     const client = createDecartClient({ apiKey });
@@ -175,14 +175,14 @@ async function connectLucy() {
         lucyVid.srcObject = stream;
         lucyVid.play().catch(() => {});
         lucyLive = true;
-        setPill("", "LIVE");
+        setPill("", "实时");
       },
     });
     console.log("Lucy connected", realtimeClient);
   } catch (err) {
     console.error("Lucy connect failed:", err);
     lucyLive = false;
-    setPill("error", "AI OFFLINE — " + (err.message || "connect failed").slice(0, 60));
+    setPill("error", "AI 离线 — " + (err.message || "连接失败").slice(0, 60));
   }
 }
 
@@ -240,7 +240,7 @@ async function init() {
   if (DEMO) {
     stream = makeDemoStream();
   } else {
-    statusText.textContent = "Loading hand tracker…";
+    statusText.textContent = "正在加载手部追踪器…";
     const fileset = await FilesetResolver.forVisionTasks(WASM_URL);
     landmarker = await HandLandmarker.createFromOptions(fileset, {
       baseOptions: { modelAssetPath: MODEL_URL, delegate: "GPU" },
@@ -251,7 +251,7 @@ async function init() {
       minTrackingConfidence: 0.3,
     });
 
-    statusText.textContent = "Requesting camera…";
+    statusText.textContent = "正在请求摄像头权限…";
     // Lucy 2.5 expects 1280x720 @ 30fps landscape input.
     stream = await navigator.mediaDevices.getUserMedia({
       video: {
@@ -381,7 +381,7 @@ function applyEffect(q) {
       ctx.shadowColor = "rgba(0,0,0,0.7)";
       ctx.shadowBlur = 8;
       ctx.fillStyle = "rgba(255,255,255,0.95)";
-      ctx.fillText("🔑 Add your Decart key for the live AI world", cx, cy);
+      ctx.fillText("🔑 添加 Decart 密钥以启用实时 AI 世界", cx, cy);
       ctx.shadowBlur = 0;
     }
   }
@@ -532,7 +532,7 @@ function makeDemoStream() {
     d.save();
     d.translate(demo.width, 0);
     d.scale(-1, 1);
-    d.fillText("DEMO FEED", demo.width / 2, demo.height / 2);
+    d.fillText("演示画面", demo.width / 2, demo.height / 2);
     d.restore();
     requestAnimationFrame(paint);
   }
@@ -571,6 +571,6 @@ init().catch((err) => {
   statusEl.querySelector(".spinner")?.remove();
   statusText.textContent =
     err.name === "NotAllowedError"
-      ? "Camera permission was denied. Allow camera access and reload."
-      : `Failed to start: ${err.message}`;
+      ? "摄像头权限被拒绝。请允许摄像头访问后重新加载页面。"
+      : `启动失败：${err.message}`;
 });
